@@ -1,0 +1,33 @@
+
+
+.container{
+    background-color: #2e2e2e;
+   margin-top: 30px;
+  
+;
+}
+  .btn-options {
+    margin-right: 10px;
+  }
+  
+  .dropdown-toggle::after {
+    display: none; /* Oculta la flecha de dropdown */
+  }
+
+  .options-buttons {
+    color:white;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown {
+    margin-right: 10px; /* Añade un margen entre los botones */
+  }
+  
+  .dropdown-toggle {
+    padding: 0.375rem 0.75rem; /* Añade relleno al botón de dropdown */
+  }
+  
+  .dropdown-menu {
+    min-width: unset; /* Elimina la restricción del ancho mínimo */
+  }

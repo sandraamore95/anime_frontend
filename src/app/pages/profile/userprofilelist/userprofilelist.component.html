@@ -1,0 +1,45 @@
+<div class="container">
+  <app-search (searchQueryChanged)="onSearchQueryChanged($event)" [placeholder]="searchHolder"></app-search>
+  <table class="table text-white">
+    <thead>
+      <tr *ngIf="!modoAdministrador">
+        <th>Username</th>
+      </tr>
+      <tr *ngIf="modoAdministrador">
+        <th>Username</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Actions</th>
+        <th>Favorites</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | filterUser:search">
+        <td *ngIf="!modoAdministrador">
+          <a routerLink="/pages/profile/{{ user.username }}">
+            <img [src]="user.avatar" class="rounded-circle mr-2" width="30" height="30">
+            {{ user.username }} </a>
+        </td>
+        <td *ngIf="modoAdministrador">   <a routerLink="/pages/profile/{{ user.username }}">
+            <img [src]="user.avatar" class="rounded-circle mr-2" width="30" height="30">
+            {{ user.username }} </a></td>
+        <td *ngIf="modoAdministrador">{{ user.email }}</td>
+        <td *ngIf="modoAdministrador">dd</td>
+        <td *ngIf="modoAdministrador">
+           <a (click)="editarUsuario(user)"> <i class="fas fa-edit"></i></a>
+          <a  (click)="eliminarUsuario(user)"> <i class="fas fa-trash-alt"></i></a>
+        </td>
+        <td  *ngIf="modoAdministrador"> <a routerLink="/pages/favorites/{{user.username}}"> <i class="fas fa-arrow-right"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+
+      <!-- Agrega el paginador -->
+      <mat-paginator
+        [length]="totalUsers"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChanged($event)">
+      </mat-paginator>
+</div>
+

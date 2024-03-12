@@ -1,0 +1,88 @@
+<div class="container" *ngIf="post">
+  <div class="row">
+    <!-- Columna de la Imagen -->
+    <div class="col-lg-6 col-md-12 mt-4">
+      <div class="text-center">
+        <img class="img-fluid shadow-sm" style="border-radius: 40px;" [src]="imageUrl" alt="Post Image" />
+        <!-- Botones de Opciones -->
+
+
+        <div *ngIf="mostrarFormulario" class="card mt-4">
+          <div class="card-body text-dark">
+            <form [formGroup]="editPostForm">
+              <div class="form-group">
+                <label for="textArea">Title</label>
+                <input type="text" class="form-control" formControlName="title">
+              </div>
+              <div class="form-group">
+                <label for="textArea2">SubTitle</label>
+                <textarea class="form-control" cols="35" rows="2" formControlName="subtitle"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" (click)="onSubmit();">Editar</button>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <!-- Columna de los Detalles del Post -->
+    <div class="col-lg-6 mt-4">
+      <div class="options-buttons">
+        <div *ngIf="isuserPrincipal || userLogged.roles.includes('ROLE_ADMIN')" class="dropdown">
+          <button class="btn btn-options dropdown-toggle text-light" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-ellipsis-h"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <!-- Opción de editar con icono de lápiz -->
+            <li *ngIf="isuserPrincipal && !userLogged.roles.includes('ROLE_ADMIN')">
+              <button class="dropdown-item" (click)="mostrarAgregarFormulario()">
+                <i class="far fa-edit"></i> Editar
+              </button>
+            </li>
+            <!-- Opción de eliminar con icono de basura -->
+            <li *ngIf="isuserPrincipal || userLogged.roles.includes('ROLE_ADMIN')">
+              <button class="dropdown-item" (click)="eliminarPost(post)">
+                <i class="far fa-trash"></i> Eliminar
+              </button>
+            </li>
+          </ul>
+        </div>
+        <!-- Botón de guardar -->
+        <button *ngIf="!isuserPrincipal"  (click)="downloadImage()" class="btn btn-options text-light">
+          <i  class="fas fa-download"></i> Descargar
+        </button>
+        
+        <button *ngIf="!isuserPrincipal" class="btn btn-options text-light" (click)="toggleFavorites()">
+          {{ (existFav$ | async) ? 'Quitar de Guardados' : 'Guardar' }} 
+        </button>
+      </div>
+
+
+    
+      <!-- Información del Usuario -->
+      <!-- Información del Usuario -->
+      <div class="user-info d-flex align-items-center mx-3">
+        <a  routerLink="/pages/profile/{{ post.author.username}}"> <img class="profile-image me-3" class="rounded-circle" src="{{user_post_avatar}}" width="40px"
+            height="40px"></a>
+        <div class="profile-details">
+          <h3 class="mb-2">{{post.author.username}}</h3>
+          <p class="mb-2">7 Seguidores</p>
+        </div>
+      </div>
+
+      <div class="mx-3">  <h2>
+        <h1>{{ post.title }}</h1>
+      </h2>
+      <p>{{ post.subtitle }}</p>
+</div>
+    
+
+      <!-- Componente de Comentarios -->
+      <app-comment [post]="post"></app-comment>
+    </div>
+  </div>
+</div>
+
+

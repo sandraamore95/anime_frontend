@@ -1,0 +1,34 @@
+<div class="container">
+<div class="col-md-12 col-lg-12 text-dark">
+    <div class="card border-0" style="background-color: #b5b5b5">
+      <div class="card-body">
+        <div class="form-outline mb-4">
+            <form [formGroup]="myForm">
+                <input type="text" formControlName="commentText"  id="addANote" class="form-control" placeholder="Type comment...">
+                <button type="submit" class="btn btn-secondary mt-2" (click)="addcomment();">Add a note</button>
+            
+            </form>
+        </div>
+        <div *ngFor="let comment of userComments" class="card mb-4">
+          <div class="card-body">
+            <p>{{comment.text}}</p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                <a routerLink="/pages/profile/{{ comment.author.username }}">
+                  <img [src]="comment.author.avatarUrl" alt="avatar" class="rounded-circle" width="25" height="25" />
+                   </a>
+                
+                <p class="small mb-0 ms-2">{{comment.author.username}}</p>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <a *ngIf="comment.author.username === userlogged.username || userlogged.roles.includes('ROLE_ADMIN')" (click)="deleteComment(comment)"> <i class="fas fa-trash mx-2 fa-md text-black"
+                    style="margin-top: -0.16rem;"></i></a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div></div>

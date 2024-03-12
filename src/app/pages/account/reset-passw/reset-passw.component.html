@@ -1,0 +1,20 @@
+
+  
+  <div *ngIf="isValidToken" class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <h2>Restablecer Contraseña</h2>
+        <form [formGroup]="resetPasswordForm" (ngSubmit)="resetPassword()">
+          <div class="mb-3">
+            <label for="newPassword" class="form-label">Nueva Contraseña:</label>
+            <input type="password" id="newPassword" class="form-control" formControlName="newPassword" required>
+          </div>
+          <button class="btn btn-secondary" type="submit" [disabled]="!resetPasswordForm.valid">Restablecer Contraseña</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isValidToken">
+    <p>El enlace de restablecimiento de contraseña es inválido o ha caducado.</p>
+  </div>
+  

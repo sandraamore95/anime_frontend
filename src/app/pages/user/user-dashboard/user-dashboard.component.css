@@ -1,0 +1,31 @@
+
+/* styles.css */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container-fluid, .row {
+    height: 100%;
+  }
+  
+
+  .collection-img span{
+    top: 90px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.collection-img {
+ 
+  width:140px;
+ 
+ 
+}
+
+@media(max-width:767px){
+  .collection-img{
+   
+  }
+}

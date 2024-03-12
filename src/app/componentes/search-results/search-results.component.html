@@ -1,0 +1,7 @@
+<div class="row mt-4 gx-0 gy-3">
+    <div class="col-md-3 col-lg-12 col-xl-2 col-6" *ngFor="let anime of animes | keyvalue | filterName:searchQuery">
+      <div class="d-block ">
+        <app-anime [anime]="anime"></app-anime>
+      </div>
+    </div>
+  </div>

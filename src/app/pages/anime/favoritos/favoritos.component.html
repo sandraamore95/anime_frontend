@@ -1,0 +1,15 @@
+<div class="row mt-4 gx-0 gy-3">
+  <div class="container" *ngIf="!animes || animes.length === 0">
+    <h1 class="text-center">No exiten animes Favoritos.</h1>
+  </div>
+</div>
+  <div *ngIf="animes && animes.length > 0">
+    <div class="container">
+      <h1 class="text-center">FAVORITOS</h1>
+      <app-search (searchQueryChanged)="onSearchQueryChanged($event)"></app-search>
+      <app-search-results [animes]="animes" [searchQuery]="filteredName"></app-search-results>
+    </div>
+
+   
+ 
+</div>

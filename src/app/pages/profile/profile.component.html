@@ -1,0 +1,66 @@
+<div class="container">
+
+
+  <div *ngIf="profile" class="row ">
+
+    <!-- profile.component.html -->
+    <!-- Asumiendo que estás usando [(ngModel)] para enlazar el input a la propiedad 'search' del componente -->
+    <!-- Asumiendo que estás usando [(ngModel)] para enlazar el input a la propiedad 'search' del componente -->
+    <div class="mt-4">
+      <app-search (searchQueryChanged)="onSearchQueryChanged($event)" [placeholder]="searchHolder"></app-search>
+    </div>
+
+
+    <div *ngIf="search">
+      <div class="list-group">
+        <a *ngFor="let user of users | filterUser:search; let i = index" routerLink="/pages/profile/{{ user.username }}"
+          class="list-group-item list-group-item-action" [class.d-none]="!showAllUsers && i >= 4">
+          <img [src]="user.avatar" class="rounded-circle mr-2" width="30" height="30"> {{ user.username }}
+        </a>
+      </div>
+      <a routerLink="/pages/user-list" *ngIf="users.length > 4" (click)="toggleShowAllUsers()" class="btn btn-link">
+        {{ showAllUsers ? 'Ver menos' : 'Ver más' }}
+      </a>
+    </div>
+
+
+    <div class="text-center mt-4">
+      <img height="140px" width="140" class="rounded-circle" [src]="profile?.avatar" alt="">
+      <h2>{{user?.username}}</h2>
+ <div *ngIf="!userlogged.roles.includes('ROLE_ADMIN')">
+        <app-request-friend [user]="user"></app-request-friend>
+      </div>  
+      
+
+
+      <h2>{{profile.fullName}}</h2>
+      <div class="mt-2">
+        <a *ngIf="profile.facebookInProfile" href="{{profile.FacebookInProfile}}" class="text-white text-decoration-none text-muted fs-4 me-4">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a *ngIf="profile.twitterProfile" href="{{profile.TwitterProfile}}" class="text-white text-decoration-none text-muted fs-4 me-4">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a *ngIf="profile.instragramProfile" href="{{profile.InstragramProfile}}" class="text-white text-decoration-none text-muted fs-4 me-4">
+          <i class="fab fa-instagram"></i>
+        </a>
+
+      </div>
+      
+      <div *ngIf="userlogged.username == user?.username" class="mt-2">
+        <a *ngFor="let friend of friends" routerLink="/pages/profile/{{friend.username}}" class="friend-link">
+          <img width="60px" height="50px" class="rounded-circle" [src]="friend.avatar" alt="Profile Image" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="user">
+    <div *ngIf="profile" class="text-center m-2">
+
+      <h3>{{profile.about}}</h3>
+    </div>
+    <app-post-profile [user_profile]="user"></app-post-profile>
+
+    
+  </div>
+</div>

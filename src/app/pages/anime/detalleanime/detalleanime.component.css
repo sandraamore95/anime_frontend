@@ -1,0 +1,58 @@
+span{
+    font-size: 8px;
+}
+.btn-primary{
+    background-color:transparent!important ;
+    border-color: rgb(216, 79, 0);
+}
+img{
+    border-radius: 5%;
+}
+.btn-secondary{
+    border-radius: 0;
+    background-color: darkgrey ;
+    margin-right: 8px;
+    padding: 5px;
+    font-size: 13px;
+}
+.youtube-button i{
+color:white;
+    font-size: 45px;
+}
+
+
+  
+ 
+.information-box {
+    margin-top: 30px;
+    background-color: #000000;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .information-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap:4px;
+  }
+  
+  .information-item {
+    margin-bottom: 8px;
+  }
+  .information-item >span {
+   font-size: 13px;
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+  .value {
+    color: #666;
+  }
+  .container{
+    margin-top:40px;
+    margin-bottom: 80px;
+  }

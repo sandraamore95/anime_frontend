@@ -1,0 +1,114 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+      <a href="#" class="navbar-brand d-flex justify-content-between align-items-center order-lg-0"
+        routerLink="/pages/home">
+        <img class="img-fluid rounded-circle" src="../../../assets/images/Captura.PNG" alt="site icon">
+        <span class="logo-span" style="color:rgb(190, 255, 37)">H</span>
+        <span class="logo-span" style="color:rgba(255, 88, 205, 0.678)">U</span>
+        <span class="logo-span" style="color:rgb(190, 255, 37)">B</span>
+      </a>
+
+
+  <div class="order-lg-2 nav-btns">
+  <div class="btn-group" *ngIf="isLoggedIn && isUser">
+    
+    <!--Notificaciones-->
+    <a type="button" class="btn position-relative">
+      <a class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <i class="fas fa-envelope "></i>
+        <span class="badge rounded-pill badge-notification bg-danger">{{notifications.length}}</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+        
+       
+    
+          <div class="notification-heading"><h4 class="menu-title">Notifications</h4>
+          </div>
+          <li class="divider"></li>
+         <div class="notifications-wrapper">
+          
+           <a *ngFor="let notification of notifications" class="content">
+            <div class="notification-item">
+             
+              <a (click)="redirectTo(notification)">
+                {{ notification.message }}
+                <i *ngIf="notification.dtype === 'Notification'; else postIcon" class="fa fa-user text-dark"
+                  aria-hidden="true"></i>
+                <ng-template #postIcon>
+                  <i class="fa fa-bullhorn text-primary" aria-hidden="true"></i>
+                </ng-template>
+              </a>
+            </div>
+          </a>
+         </div>
+          <li class="divider"></li>
+          <div class="notification-footer"><h4 class="menu-title">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4></div>
+      </div>
+    </a>
+
+    <a type="button" class="btn position-relative" routerLink="/pages/favorites/{{user_profile.username}}">
+      <i class="fa fa-heart"></i>
+    </a>
+    <a type="button" class="btn position-relative" routerLink="/pages/favorites-posts/{{user_profile.username}}">
+      <i class="fa fa-bookmark"></i>
+    </a>
+    <a type="button" class="btn position-relative" routerLink="/pages/user-dashboard">
+      <img [src]="user_profile.avatar" width="27px" height="30px" class="rounded-circle">
+    </a>
+  </div>
+</div>
+
+
+
+
+
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" routerLinkActive="active">
+
+          <li class="nav-item" *ngIf="isLoggedIn && isAdmin">
+            <a class="nav-link" routerLink="/pages/admin-dashboard">Admin Board</a>
+          </li>
+
+          <li class="nav-item">
+
+            <a class="nav-link" *ngIf="isLoggedIn && isUser"
+              routerLink="/pages/profile/{{ user_profile.username}}">Perfil</a>
+          </li>
+
+        </ul>
+
+
+        <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link btn btn-primary" routerLink="/auth/register">
+              <i class="fas fa-user-plus"></i> Sign Up
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-primary" routerLink="/auth/login">
+              <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link btn" (click)="logout()">
+              <i class="fas fa-sign-out-alt"></i> Log Out
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>

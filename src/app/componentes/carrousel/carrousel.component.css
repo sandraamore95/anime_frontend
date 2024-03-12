@@ -1,0 +1,37 @@
+.carousel {
+    background-color: #f8f9fa; /* Color de fondo del carrusel */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.carousel-image {
+    object-fit: cover; /* Ajuste de la imagen para cubrir completamente el contenedor */
+    height: 300px; /* Altura deseada */
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(255, 255, 255, 0.5); /* Color de fondo de los botones de navegación */
+    border-radius: 50%; /* Bordes redondeados */
+    width: 40px; /* Ancho deseado */
+    height: 40px; /* Altura deseada */
+    font-size: 24px; /* Tamaño del ícono */
+}
+
+.carousel-indicators {
+    position: absolute; /* Posición absoluta */
+    bottom: 10px; /* Alineación inferior */
+    left: 50%; /* Centrado horizontal */
+    transform: translateX(-50%); /* Centrado horizontal */
+}
+
+.carousel-indicators li {
+    background-color: rgba(0, 0, 0, 0.3); /* Color del indicador */
+    border-radius: 50%; /* Bordes redondeados */
+    width: 10px; /* Ancho deseado */
+    height: 10px; /* Altura deseada */
+    margin: 0 5px; /* Margen entre los indicadores */
+}
+
+.carousel-indicators li.active {
+    background-color: #007bff; /* Color del indicador activo */
+}

@@ -1,0 +1,22 @@
+<div class="container">
+
+    <ng-container *ngIf="character">
+        <div class="container ">
+            <div class="row m-4 ">
+                <div class="col-lg-4 col-md-12 col-12">
+                    <div class="about-img">
+                        <img class="img-fluid" width="100%" src="{{character.images.webp.image_url}}" alt="">
+                        <app-similars [anime]="character.anime"></app-similars>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12 col-12 ">
+                    <div class="about-text ">
+                        <p>{{character.name}}</p>
+                        <p>{{character.about}}</p>
+                    </div>
+                   <app-voice-character [character]="character"></app-voice-character>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

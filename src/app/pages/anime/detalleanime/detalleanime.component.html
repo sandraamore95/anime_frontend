@@ -1,0 +1,92 @@
+
+
+    <ng-container *ngIf="anime">
+        <div class="container">
+            <div class="row m-4 ">
+                <div class="col-lg-4 col-md-12 col-12">
+                    <!-- COL-LG-4 EN PANTALLA GRANDE OCUPA 4 COLUMNAS , POCO Y AL LADO EL TEXTO
+                        COL-MD-12 EN PANTALLA MEDIANA Y PEQUEÑA OCUPA TODO FOTO Y ABAJO TEXTO
+                -->
+                    <div class="about-img text-center">
+                        <img class="img-fluid" src="{{anime.images.jpg.large_image_url}}" alt="">
+                    </div>
+                    <div class="text-center m-4">
+
+                        <a class="btn btn-primary mt-4" (click)="toggleFavorites()">
+                            {{ (existFav$ | async) ? 'Quitar de la lista' : 'Agregar a la lista' }}
+                          </a>
+                          
+                        <br>
+                        <a *ngIf="videoUrl" class="" (click)="toggleVideo()" target="_blank" class="youtube-button">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+
+                    <div class="mt-4" *ngIf="showVideo">
+                        <iframe width="320" height="300" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <app-recommendation [anime]="anime"></app-recommendation>
+
+                    <div class="information-box">
+                        <h3>Information</h3>
+                        <div class="information-content">
+                          <div class="information-item">
+                            <span class="label">Type: </span>
+                            <span class="value">{{anime.type}}</span>
+                          </div>
+                          <div class="information-item">
+                            <span class="label">Episodes: </span>
+                            <span class="value">{{anime.episodes}}</span>
+                          </div>
+                          <div class="information-item">
+                            <span class="label">Status: </span>
+                            <span class="value">{{anime.status}}</span>
+                          </div>
+                          <div class="information-item">
+                            <span class="label">Aired: </span>
+                            <span class="value">{{anime.aired}}</span>
+                          </div>
+                          <div class="information-item">
+                            <span class="label">Duration: </span>
+                            <span class="value">{{anime.duration}}</span>
+                          </div>
+                          <div class="information-item">
+                            <span class="label">Rating: </span>
+                            <span class="value">{{anime.rating}}</span>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+
+
+
+                <div class="col-lg-8 col-md-12 col-12 ">
+                    <div class="about-text ">
+                        <h1>{{anime.title}}</h1>
+                        <h3>{{anime.background}}</h3>
+                        <p>{{anime.source}}</p>
+                        <p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                class="fa fa-star"></i> | <span>Puntuacion media : {{anime.score}} | 24 reseñas</span>
+                        </p>
+
+                        <p>{{anime.synopsis}}</p>
+                        <div class="d-flex">
+                            <a *ngFor="let genre of anime.genres" class="btn btn-secondary">{{genre.name}}</a>
+                        </div>
+                        <div class="row mt-4">
+                            <h4 class="text-center">Characters</h4>
+                            <app-character [anime]="anime"></app-character>
+                           
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+
+
+    <!-- SI NO ESTA LOGEADO , tiene que iniciar sesion antes !-->

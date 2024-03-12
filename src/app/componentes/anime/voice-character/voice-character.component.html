@@ -1,0 +1,21 @@
+<table class="table table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">Language</th>
+        <th scope="col">Voice Actor</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let voice of character.voices">
+        <td style="padding: 10px 15px;">{{ voice.language }}</td>
+        <td style="padding: 10px 15px;">
+          <h3>{{ voice.person.name }}</h3>
+        </td>
+        <td style="padding: 10px 0px;">
+          <img src="{{ voice.person.images.jpg.image_url }}" alt="Voice Actor Image" width="100px" class="img-fluid">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

@@ -1,0 +1,14 @@
+
+<div class="container">
+    <h1 class="text-center">PUBLICACIONES GUARDADAS</h1>
+      <div class="grid-container">
+    <div *ngFor="let post of favoritePosts"  class="grid-item">
+        
+        
+        <a routerLink="/pages/post/{{post.post.id}}">
+            <img *ngIf="post.imageUrl" [src]="post.imageUrl" width="50px" class="img-fluid">
+          </a>
+   
+    <!-- Agrega más elementos según sea necesario -->
+  </div>
+</div>

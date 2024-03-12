@@ -1,0 +1,57 @@
+
+
+<!--<div class="mb-4" >
+  <a *ngIf="!isFriend && (!isPending || !isSender)" class="btn btn-secondary" (click)="sendFriendRequest(user.id)" style="font-family: 'Arial', sans-serif; background-color: #ffb066; color: #464646; text-shadow: 1px 1px 1px #000000; border: 1px solid #ffb6c1;">Seguir</a>
+
+    
+    <div *ngIf="isPending">
+      <button *ngIf="isSender || isCancel" class="btn btn-danger" (click)="cancelFriendRequest(user.id)">Cancelar</button>
+      <div *ngIf="isReceiver && !isCancel">
+        <button class="btn btn-warning" (click)="rejectFriendRequest(user.id)"><i class="fa fa-ban" aria-hidden="true"></i></button>
+        <button class="btn btn-success" (click)="acceptFriendRequest(user.id)"><i class="fa fa-check" aria-hidden="true"></i></button>
+      </div>
+    </div>
+ <br>
+   
+    <a *ngIf="isFriend" class="btn btn-danger" (click)="deleteFriend(user.id)">Dejar de Seguir</a>
+  </div> -->
+  <div class="container" *ngIf="user?.username && userPrincipal.username !== user.username">
+    <h3>Request Friends</h3>
+
+    <div *ngIf="isFriend">
+      <!-- Si son amigos -->
+      <a class="btn btn-secondary" (click)="deleteFriend(user.id)">Eliminar amigo</a>
+    </div>
+    
+    <div *ngIf="isPending">
+      <!-- Si hay una solicitud pendiente -->
+      <div *ngIf="isCancel">
+        <!-- Si el usuario principal es el remitente de la solicitud -->
+        <a class="btn btn-danger" (click)="cancelFriendRequest(user.id)">Cancelar solicitud</a>
+      </div>
+      <div *ngIf="isReceiver">
+        <!-- Si el usuario principal es el receptor de la solicitud -->
+        <a class="btn btn-success" (click)="acceptFriendRequest(user.id)">Aceptar</a>
+        <a class="btn btn-warning" (click)="rejectFriendRequest(user.id)">Rechazar</a>
+      </div>
+    </div>
+    
+  <!-- Muestra el botón de enviar solicitud si no son amigos y el usuario actual no ha enviado ya una solicitud -->
+<div *ngIf="!isFriend && !isPending">
+  <button class="btn btn-primary" (click)="sendFriendRequest(user.id)">Enviar Solicitud de Amistad</button>
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>

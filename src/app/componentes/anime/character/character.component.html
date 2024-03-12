@@ -1,0 +1,13 @@
+<div class="d-flex flex-wrap">
+    <div *ngFor="let character of characters" class="col-12 col-sm-6 col-md-4 col-lg-3 m-4">
+      <div class="card text-dark">
+       <a routerLink="/pages/detalleCharacter/{{ character.mal_id }}" >  <img class="card-img-top img-fluid" width="30px" src="{{character.images.webp.image_url}}" alt="Character Image"></a> 
+       
+        <div class="card-body">
+          <h5 class="card-title">{{ character.name }}</h5>
+          <!-- Agrega otras propiedades según sea necesario -->
+        </div>
+      </div>
+    </div>
+  </div>
+  

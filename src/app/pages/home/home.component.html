@@ -1,0 +1,8 @@
+<div class="container mt-4">
+  <!-- home.component.html -->
+<app-carrousel></app-carrousel>
+  <h1 class="text-center mt-4 mb-4">TOP Animes</h1>
+  <app-search (searchQueryChanged)="onSearchQueryChanged($event)"></app-search>
+
+  <app-search-results [animes]="animes" [searchQuery]="filteredName"></app-search-results>
+</div>

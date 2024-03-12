@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <!--SUBIR DIBUJO -->
+  <div *ngIf="user_profile.username == userLogged" class="col-md-8">
+    <div class="row mb-4 ">
+      <div class="col-sm-12 col-md-8 col-lg-6">
+        <button type="submit" class="btn btn-primary btn-block" (click)="mostrarAgregarFormulario();">AGREGAR
+          DIBUJO</button>
+        <div *ngIf="mostrarFormulario" class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">Subir Foto</h5>
+            <form [formGroup]="myForm">
+              <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="file" class="form-control" formControlName="image" id="imagen" accept="image/*"
+                  (change)="onFileSelected($event)">
+                <img *ngIf="imageData" width="80px" [src]="imageData" class="img-fluid mt-3" alt="Image Preview">
+              </div>
+              <div class="form-group">
+                <label for="textArea">Title</label>
+                <input type="text" class="form-control" formControlName="textArea">
+              </div>
+              <div class="form-group">
+                <label for="textArea2">SubTitle</label>
+                <textarea class="form-control" cols="35" rows="2" formControlName="textArea2"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" (click)="uploadPost();">Subir</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section *ngIf="userPosts.length!=0" class="photo-gallery">
+    <!-- Botón para ir a la página anterior -->
+    <button class="btn btn-secondary" (click)="prevPage()" *ngIf="currentPage !== 0">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <!-- Botón para ir a la página siguiente -->
+    <button class="btn btn-secondary" (click)="nextPage()" *ngIf="currentPage < totalPages - 1">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <h4 class="text-center" style="font-family: 'Arial', sans-serif; color: #ff66b2; text-shadow: 1px 2px 2px #fff4e4;">
+      🌸 Mis Dibujos 🌸</h4>
+   <div class="container-gallery">
+      <div class="grid-container">
+        <div *ngFor="let post of userPosts" class="grid-item">
+          <a routerLink="/pages/post/{{post.id}}">
+            <img class="" [src]="postImages[post.id]" alt="Post Image" />
+          </a>
+       
+      </div>
+    </div>
+    </div>
+  </section>
+</div>

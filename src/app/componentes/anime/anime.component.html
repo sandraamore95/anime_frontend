@@ -1,0 +1,10 @@
+<div class="anime-container">
+    <a routerLink="/pages/detalle/{{ anime.value.mal_id }}">
+        <img src="{{ anime.value.images.jpg.image_url }}" class="anime-image shadow-4-strong" alt="">
+        <div class="rating">
+            <i class="fas fa-star"></i> <!-- Ícono de estrella -->
+            <span class="score">{{ anime.value.score }}</span> <!-- Número de calificación -->
+        </div>
+    </a>
+    <h4>{{ anime.value.title }}</h4>
+</div>

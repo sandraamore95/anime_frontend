@@ -1,0 +1,43 @@
+
+<div class="text-center">
+  <h2>Cambiar Email</h2>
+  <form [formGroup]="changeEmailForm" (ngSubmit)="onSubmit()">
+    <!-- currentEmail -->
+ 
+  
+    <!-- newEmail -->
+    <div class="mb-3">
+      <label for="newEmail" class="form-label">Nuevo Correo Electrónico</label>
+      <input type="email" class="form-control" id="newEmail" formControlName="newEmail">
+      <span *ngIf="changeEmailForm.get('newEmail')?.hasError('required')" class="error-message">
+        El nuevo correo electrónico es requerido.
+      </span>
+      <span *ngIf="changeEmailForm.get('newEmail')?.hasError('email')" class="error-message">
+        Ingresa un correo electrónico válido.
+      </span>
+    </div>
+  
+    <!-- confirmEmail -->
+    <div class="mb-3">
+      <label for="confirmEmail" class="form-label">Confirmar Correo Electrónico</label>
+      <input type="email" class="form-control" id="confirmEmail" formControlName="confirmEmail">
+      <span *ngIf="changeEmailForm.get('confirmEmail')?.hasError('required')" class="error-message">
+        La confirmación del correo electrónico es requerida.
+      </span>
+      <span *ngIf="changeEmailForm.get('confirmEmail')?.hasError('mismatch')" class="error-message">
+        Los correos electrónicos no coinciden.
+      </span>
+    </div>
+  
+    <button type="submit" class="btn btn-secondary">Cambiar Correo Electrónico</button>
+  </form>
+
+
+  <div class="form-group">
+    <div *ngIf="isChangeEmail" class="alert alert-danger" role="alert">
+      {{ response }}
+    </div>
+ 
+  </div>
+
+</div>
