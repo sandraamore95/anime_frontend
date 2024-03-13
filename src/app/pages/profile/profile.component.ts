@@ -9,6 +9,7 @@ import { AvatarService } from 'src/app/services/avatar-service.service';
 import { FriendService } from 'src/app/services/friend.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { ThemeService } from 'src/app/services/theme.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -34,11 +35,15 @@ export class ProfileComponent implements AfterViewInit {
     private route: ActivatedRoute,
     private storageService: StorageService,
     private friendService: FriendService, private avatarService: AvatarService,
-    private profileService: ProfileService, private filteredUserPipe: FilterUserPipe, private cd: ChangeDetectorRef
+    private profileService: ProfileService, 
+    private filteredUserPipe: FilterUserPipe, 
+    private cd: ChangeDetectorRef,public themeService: ThemeService
   ) {
 
   }
-
+  toggleTheme() {
+    this.themeService.toggleTheme();
+  }
   // LOGICA PARA LA BARRA BUSCADORA !!
   onSearchQueryChanged(query: string): void {
     this.search = query;
@@ -131,4 +136,6 @@ export class ProfileComponent implements AfterViewInit {
       }
     );
   }
+
+ 
 }

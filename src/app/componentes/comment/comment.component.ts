@@ -5,6 +5,7 @@ import { CommentService } from 'src/app/services/comment.service';
 import { UserService } from 'src/app/services/user.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AvatarService } from 'src/app/services/avatar-service.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class CommentComponent implements OnInit{
   constructor(
     private commentService: CommentService,
     private storageService: StorageService,
-    private userService: UserService, private avatarService:AvatarService,
+    private userService: UserService, private avatarService:AvatarService, public themeService: ThemeService
   ) {
     this.myForm = new FormGroup({
       commentText: new FormControl('')

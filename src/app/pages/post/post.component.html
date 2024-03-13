@@ -1,4 +1,4 @@
-<div class="container" *ngIf="post">
+<div class="container" [ngClass]="{'dark-theme': themeService.getTheme() === 'dark'}" *ngIf="post">
   <div class="row">
     <!-- Columna de la Imagen -->
     <div class="col-lg-6 col-md-12 mt-4">

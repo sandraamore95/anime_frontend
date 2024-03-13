@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
 import { AvatarService } from 'src/app/services/avatar-service.service';
 import { FavoritePostsService } from 'src/app/services/favorite-posts.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-post',
@@ -34,7 +35,7 @@ export class PostComponent {
     private postService: PostService,
     private storageService: StorageService,
     private router: Router,private formBuilder: FormBuilder,private avatarService :AvatarService,
-    private favoritePostService:FavoritePostsService
+    private favoritePostService:FavoritePostsService ,public themeService: ThemeService
   ) { }
   
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
@@ -6,6 +6,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FriendService } from 'src/app/services/friend.service';
+import { ThemeService } from 'src/app/services/theme.service';
 @Component({
   selector: 'app-post-profile',
   templateUrl: './post.component.html',
@@ -33,6 +34,7 @@ export class PostComponent {
     private storageService: StorageService,
     private userService: UserService,
     private formBuilder: FormBuilder, private friendshipService: FriendService,
+    public themeService: ThemeService
 
   ) {
     this.myForm = this.formBuilder.group({
@@ -41,6 +43,7 @@ export class PostComponent {
       textArea2: ['', Validators.required],
     });
   }
+
 
   ngOnInit(): void {
     this.userLogged = this.storageService.getUser().username;
@@ -182,4 +185,5 @@ export class PostComponent {
 
     });
   }
+
 }  

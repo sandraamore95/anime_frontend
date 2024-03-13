@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" [ngClass]="{'dark-theme': themeService.getTheme() === 'dark'}">
 
-
+  <button (click)="toggleTheme()" [ngClass]="{'active': themeService.getTheme() === 'dark'}">Cambiar Tema</button>
   <div *ngIf="profile" class="row ">
 
     <!-- profile.component.html -->
@@ -27,9 +27,12 @@
     <div class="text-center mt-4">
       <img height="140px" width="140" class="rounded-circle" [src]="profile?.avatar" alt="">
       <h2>{{user?.username}}</h2>
- <div *ngIf="!userlogged.roles.includes('ROLE_ADMIN')">
+      <!--
+         <div *ngIf="!userlogged.roles.includes('ROLE_ADMIN')">
         <app-request-friend [user]="user"></app-request-friend>
-      </div>  
+      </div> 
+      -->
+ 
       
 
 
@@ -59,7 +62,11 @@
 
       <h3>{{profile.about}}</h3>
     </div>
-    <app-post-profile [user_profile]="user"></app-post-profile>
+    
+      
+      <app-post-profile  [user_profile]="user"></app-post-profile>
+   
+    
 
     
   </div>

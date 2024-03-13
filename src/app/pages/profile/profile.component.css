@@ -1,6 +1,4 @@
-body {
-  background-color: #f9f9fa
-}
+
 .container{
   margin-top:40px;
   margin-bottom: 80px;
@@ -141,9 +139,22 @@ p {
 }
 
 
-#toastr-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 70px; /* Ajusta esta propiedad según sea necesario para la posición exacta */
+button {
+  background-color: #6b6b6b; /* Color llamativo por defecto */
+  color: #ffffff; /* Texto blanco */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
 }
+
+button.active {
+  background-color: #b357ff; /* Color llamativo cuando está activo */
+}
+
+.dark-theme {
+  background-color: #000000; /* Cambiar el color de fondo cuando el tema es oscuro */
+  color: #ffffff; /* Cambiar el color del texto cuando el tema es oscuro */
+}
+
+
+

@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" [ngClass]="{'dark-theme': themeService.getTheme() === 'dark'}">
 <div class="col-md-12 col-lg-12 text-dark">
-    <div class="card border-0" style="background-color: #b5b5b5">
+    <div class="card border-0" id="div-comment">
       <div class="card-body">
         <div class="form-outline mb-4">
             <form [formGroup]="myForm">

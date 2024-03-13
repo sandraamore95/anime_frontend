@@ -1,9 +1,11 @@
-<div class="container mt-4">
+
+
+<div class="container mt-4" [ngClass]="{'dark-theme': themeService.getTheme() === 'dark'}">
   <!--SUBIR DIBUJO -->
   <div *ngIf="user_profile.username == userLogged" class="col-md-8">
     <div class="row mb-4 ">
       <div class="col-sm-12 col-md-8 col-lg-6">
-        <button type="submit" class="btn btn-primary btn-block" (click)="mostrarAgregarFormulario();">AGREGAR
+        <button  type="submit" class="btn btn-primary btn-block" (click)="mostrarAgregarFormulario();">AGREGAR
           DIBUJO</button>
         <div *ngIf="mostrarFormulario" class="card mt-4">
           <div class="card-body">
@@ -41,7 +43,7 @@
     <button class="btn btn-secondary" (click)="nextPage()" *ngIf="currentPage < totalPages - 1">
       <i class="fas fa-chevron-right"></i>
     </button>
-    <h4 class="text-center" style="font-family: 'Arial', sans-serif; color: #ff66b2; text-shadow: 1px 2px 2px #fff4e4;">
+    <h4 #titlePost class="text-center" style="font-family: 'Arial', sans-serif; color: #ff66b2; text-shadow: 1px 2px 2px #fff4e4;">
       🌸 Mis Dibujos 🌸</h4>
    <div class="container-gallery">
       <div class="grid-container">

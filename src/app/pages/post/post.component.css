@@ -31,3 +31,18 @@
   .dropdown-menu {
     min-width: unset; /* Elimina la restricción del ancho mínimo */
   }
+  .dark-theme {
+    background-color:#ffffff; /* Cambiar el color de fondo cuando el tema es oscuro */
+    color: #000000; /* Cambiar el color del texto cuando el tema es oscuro */
+  }
+  
+ 
+  .dark-theme .container {
+    padding: 20px;
+    background-color: #ff4c6b; /* Cambiar el color de fondo del contenido cuando el tema es oscuro */
+  }
+  
+  .dark-theme .btn-primary {
+    background-color: #ff4c6b;
+    cursor: pointer;
+  }

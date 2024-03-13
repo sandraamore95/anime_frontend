@@ -7,6 +7,7 @@
     text-align: center;
   }
   .btn-primary {
+    background-color: #707070;
     cursor: pointer;
   }
   
@@ -14,10 +15,7 @@
     background-color: #007bff;
   }
 
-  .container-gallery {
-    border: 1px solid #ccc;
-    padding: 20px;
-  }
+ 
   
   .main-content {
     background-color: #fff;
@@ -76,5 +74,24 @@
   /* Pseudo-clase hover para quitar el desenfoque al pasar el ratón por encima */
   .blurry-image:hover {
     filter: blur(0);
+  }
+  .dark-theme {
+    background-color: #000000; /* Cambiar el color de fondo cuando el tema es oscuro */
+    color: #ffffff; /* Cambiar el color del texto cuando el tema es oscuro */
+  }
+  
+   .container-gallery {
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .dark-theme .container-gallery {
+    padding: 20px;
+   border:solid 1px  #ffa6e9; /* Cambiar el color de fondo del contenido cuando el tema es oscuro */
+  }
+  
+  .dark-theme .btn-primary {
+    background-color: #ff4c6b;
+    cursor: pointer;
   }
   

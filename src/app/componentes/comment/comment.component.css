@@ -1,4 +1,23 @@
 .card{
     margin-bottom: 100px;
+    
   
 }
+#div-comment{background: linear-gradient(to right, rgb(0, 0, 0), rgb(255, 254, 246), rgb(59, 59, 59));
+    
+
+}
+.dark-theme {
+    background-color:#ffffff; /* Cambiar el color de fondo cuando el tema es oscuro */
+    color: #000000; /* Cambiar el color del texto cuando el tema es oscuro */
+  }
+  
+ 
+  .dark-theme .container {
+    padding: 20px;
+    background-color: #ff4c6b; /* Cambiar el color de fondo del contenido cuando el tema es oscuro */
+  }
+  
+  .dark-theme #div-comment {
+    background: linear-gradient(to right, rgb(255, 139, 183), rgb(255, 238, 140), rgb(255, 194, 136));
+  }
