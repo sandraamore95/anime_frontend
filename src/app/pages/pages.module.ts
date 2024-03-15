@@ -20,13 +20,14 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ForgetPasswComponent } from './account/forget-passw/forget-passw.component';
 import { FavoritePostsComponent } from './favorite-posts/favorite-posts.component';
 import { ResetPasswComponent } from './account/reset-passw/reset-passw.component';
+import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 
 
 
 
 @NgModule({
   declarations: [HomeComponent, AdminDashboardComponent,UserDashboardComponent,DetalleanimeComponent, FavoritosComponent, ProfileComponent, 
-    PostComponent, CharacterDetalleComponent, UserprofilelistComponent, ForgetPasswComponent, FavoritePostsComponent, ResetPasswComponent],
+    PostComponent, CharacterDetalleComponent, UserprofilelistComponent, ForgetPasswComponent, FavoritePostsComponent, ResetPasswComponent, NotificationPanelComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,

@@ -20,6 +20,7 @@ import { UserprofilelistComponent } from './profile/userprofilelist/userprofilel
 import { ForgetPasswComponent } from './account/forget-passw/forget-passw.component';
 import { FavoritePostsComponent } from './favorite-posts/favorite-posts.component';
 import { ResetPasswComponent } from './account/reset-passw/reset-passw.component';
+import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 
 
 
@@ -64,6 +65,10 @@ const routes: Routes = [
   {
     path: 'reset-passw',
     component: ResetPasswComponent,
+  },
+  {
+    path: 'panelNotifications',
+    component: NotificationPanelComponent,
   },
   {
     path: 'favorites/:username',

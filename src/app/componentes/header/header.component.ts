@@ -96,6 +96,7 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/pages/profile/', username]);
     } else {
       // Redirigir a la página del post y eliminar la notificación
+      console.log(notification);
       const username = notification.comment.post.author.username;
 
       // Eliminar la notificación antes de redirigir
