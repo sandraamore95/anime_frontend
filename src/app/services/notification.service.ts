@@ -39,8 +39,8 @@ export class NotificationService {
     return this.http.get<any[]>(url);
   }
 
-  deleteNotification(notificationId: number,role:string): Observable<any> {
-    return this.http.delete<any>(API_URL + `delete-notification/${notificationId}?role=${role}`, { responseType: 'text' as 'json'}).pipe(
+  deleteNotification(notificationId: number): Observable<any> {
+    return this.http.delete<any>(API_URL + `delete-notification/${notificationId}`, { responseType: 'text' as 'json'}).pipe(
       tap(() => this.notificationDeletedSource.next(notificationId)),
       catchError(error => {
         // Manejo de errores

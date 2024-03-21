@@ -25,7 +25,7 @@
     
     <div *ngIf="isPending">
       <!-- Si hay una solicitud pendiente -->
-      <div *ngIf="isCancel">
+      <div >
         <!-- Si el usuario principal es el remitente de la solicitud -->
         <a class="btn btn-danger" (click)="cancelFriendRequest(user.id)">Cancelar solicitud</a>
       </div>

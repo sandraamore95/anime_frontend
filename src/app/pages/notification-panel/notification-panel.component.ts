@@ -58,7 +58,7 @@ export class NotificationPanelComponent implements OnInit {
       const username = notification.comment.post.author.username;
 
       // Eliminar la notificación antes de redirigir
-      this.notificationService.deleteNotification(notification.id,"CommentNotification").subscribe(
+      this.notificationService.deleteNotification(notification.id).subscribe(
         (deletedNotification: any) => {
           console.log("Notificación eliminada:", deletedNotification);
           // Redirigir a la página del post
