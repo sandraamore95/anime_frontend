@@ -41,17 +41,41 @@
   <button class="btn btn-primary" (click)="sendFriendRequest(user.id)">Enviar Solicitud de Amistad</button>
 </div>
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
   </div>
+
+
+  <!--
+
+ <-- Usuario autenticado es el remitente 
+    <div *ngIf="isSender">
+ 
+  <div *ngIf="!isFriend">
+    Si no son amigos 
+    <div *ngIf="!isPending">
+      Si no hay una solicitud pendiente
+      <button class="btn btn-primary" (click)="sendFriendRequest(user.id)">Seguir Usuario</button>
+    </div>
+    <div *ngIf="isPending">
+     Si hay una solicitud pendiente 
+      <button class="btn btn-danger" (click)="cancelFriendRequest(user.id)">Cancelar Seguimiento</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div *ngIf="isReceiver">
+ Usuario autenticado es el destinatario 
+  <div *ngIf="!isFriend && isPending">
+    Si no son amigos y hay una solicitud pendiente 
+    <button class="btn btn-success" (click)="acceptFriendRequest(user.id)">Aceptar</button>
+    <button class="btn btn-warning" (click)="rejectFriendRequest(user.id)">Rechazar</button>
+  </div>
+  <div *ngIf="!isFriend">
+   Si no son amigos 
+    <button class="btn btn-primary" (click)="sendFriendRequest(user.id)">Seguir Usuario</button>
+  </div>
+</div>
+-->
