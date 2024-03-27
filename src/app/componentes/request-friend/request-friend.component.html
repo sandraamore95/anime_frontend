@@ -25,7 +25,7 @@
     
     <div *ngIf="isPending">
       <!-- Si hay una solicitud pendiente -->
-      <div >
+      <div *ngIf="isSender">
         <!-- Si el usuario principal es el remitente de la solicitud -->
         <a class="btn btn-danger" (click)="cancelFriendRequest(user.id)">Cancelar solicitud</a>
       </div>
@@ -37,7 +37,7 @@
     </div>
     
   <!-- Muestra el botón de enviar solicitud si no son amigos y el usuario actual no ha enviado ya una solicitud -->
-<div *ngIf="!isFriend && !isPending">
+<div *ngIf="!isFriend || (!isPending || !isSender)">
   <button class="btn btn-primary" (click)="sendFriendRequest(user.id)">Enviar Solicitud de Amistad</button>
 </div>
 

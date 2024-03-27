@@ -23,7 +23,6 @@ export class RequestFriendComponent implements OnInit {
   isCancel: boolean = false;
 
 
-
   selectedNotification: any;
   notificationsSender: any[] = [];
   userPrincipal: any;
@@ -66,7 +65,7 @@ this.friendService.existPending(this.user.id).subscribe(result => {
   if (result) {
     this.isPending = true;
     console.log("HAY PENDING ");
-
+    
     //CHECK SENDER 
     this.friendService.getFriendshipRequest(this.user.id).subscribe(
       (sender: User) => {
