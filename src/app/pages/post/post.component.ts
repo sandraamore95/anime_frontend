@@ -13,6 +13,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { AvatarService } from 'src/app/services/avatar-service.service';
 import { FavoritePostsService } from 'src/app/services/favorite-posts.service';
 import { ThemeService } from 'src/app/services/theme.service';
+import { FriendService } from 'src/app/services/friend.service';
 
 @Component({
   selector: 'app-post',
@@ -35,7 +36,7 @@ export class PostComponent {
     private postService: PostService,
     private storageService: StorageService,
     private router: Router,private formBuilder: FormBuilder,private avatarService :AvatarService,
-    private favoritePostService:FavoritePostsService ,public themeService: ThemeService
+    private favoritePostService:FavoritePostsService ,public themeService: ThemeService , private friendService:FriendService
   ) { }
   
   ngOnInit(): void {
@@ -110,31 +111,7 @@ export class PostComponent {
     alert("decargar imagen en local!");
   }
 
-  save(){
-    const favoritePost = {
-      user: { id: this.storageService.getUser().id }, //deserializacion
-      post: { id: this.post.id }
-    };
-    console.log(favoritePost);
-    this.favoritePostService.addFavoritePost(favoritePost)
-    .subscribe(
-      response => {
-        this.existFav$.next(true); // Actualizar el estado
-        console.log('Favorite post added successfully', response);
-      },
-      error => {
-        console.error('Error adding favorite post', error);
-      }
-    );
-  }
-
-
-  remove(){
-    this.favoritePostService.removeFavorite(this.post.id).subscribe(() => {
-      this.existFav$.next(false); // Actualizar el estado
-    });
-  }
-
+ 
 
   onSubmit() {
     this.isFormSubmitted = true;
@@ -166,6 +143,12 @@ export class PostComponent {
       this.existFav$.next(isFav);
     });
   }
+
+  getFollowers(){
+    const user=this.userLogged;
+    //obtenemos el usuario y ahora sacamos los amigos que tiene
+
+  }
   
 
   toggleFavorites() {
@@ -178,6 +161,32 @@ export class PostComponent {
     this.save();
     }
   }
+
+  save(){
+    const favoritePost = {
+      user: { id: this.storageService.getUser().id }, //deserializacion
+      post: { id: this.post.id }
+    };
+    console.log(favoritePost);
+    this.favoritePostService.addFavoritePost(favoritePost)
+    .subscribe(
+      response => {
+        this.existFav$.next(true); // Actualizar el estado
+        console.log('Favorite post added successfully', response);
+      },
+      error => {
+        console.error('Error adding favorite post', error);
+      }
+    );
+  }
+
+
+  remove(){
+    this.favoritePostService.removeFavorite(this.post.id).subscribe(() => {
+      this.existFav$.next(false); // Actualizar el estado
+    });
+  }
+
   
 
 }

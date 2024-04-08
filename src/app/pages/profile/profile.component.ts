@@ -121,7 +121,7 @@ export class ProfileComponent implements AfterViewInit {
     });
   }
   getFriends() {
-    this.friendService.getFriends().subscribe(
+    this.friendService.getFriends(this.user.username).subscribe(
       (friends: any[]) => {
         // Iterar sobre la lista de amigos
         friends.forEach((friend: any) => {

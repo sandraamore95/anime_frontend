@@ -25,8 +25,8 @@ export class FriendService {
  }
 //ENDPOINTS CONTROLLER FRIENDScontroller
 
-getFriends(): Observable<User[]> {
-  return this.http.get<User[]>(API_URL + 'all');
+getFriends(username: string): Observable<User[]> {
+  return this.http.get<User[]>(API_URL + `all?username=${username}`);
 }
 
 
