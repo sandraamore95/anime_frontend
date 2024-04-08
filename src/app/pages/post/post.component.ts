@@ -30,6 +30,7 @@ export class PostComponent {
   editPostForm!: FormGroup;
   mostrarFormulario: boolean = false;
   isFormSubmitted: boolean = false;
+  followers:number=0;
   existFav$ = new BehaviorSubject<boolean>(false);
   
   constructor(private route: ActivatedRoute,
@@ -69,6 +70,7 @@ export class PostComponent {
           });
           this.isuserPrincipal = this.post.author.id === this.userLogged.id;
           console.log('Publicación obtenida:', this.post);
+          this.getFollowers();
           this.checkIfFavorite();
           this.postService.getuserPostImage(post.id, this.post.author.username).subscribe((image: Blob) => {
             this.imageUrl = URL.createObjectURL(image);
@@ -145,7 +147,14 @@ export class PostComponent {
   }
 
   getFollowers(){
-    
+    //recogemos el user 
+    this.friendService.getFriends(this.post.author.username).subscribe(
+      (friends: any[]) => {
+        console.log(friends.length);
+      this.followers=friends.length;
+        
+      }
+    );
 
   }
   
