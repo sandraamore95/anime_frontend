@@ -145,8 +145,7 @@ export class PostComponent {
   }
 
   getFollowers(){
-    const user=this.userLogged;
-    //obtenemos el usuario y ahora sacamos los amigos que tiene
+    
 
   }
   

@@ -18,7 +18,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./profile.component.css'],
   providers: [FilterUserPipe]
 })
-export class ProfileComponent implements AfterViewInit {
+export class ProfileComponent implements AfterViewInit ,OnInit{
   searchHolder: string = 'search User...'
   search: string = '';
   user: any;
@@ -41,6 +41,10 @@ export class ProfileComponent implements AfterViewInit {
   ) {
 
   }
+ngOnInit(): void {
+  this.user=this.storageService.getUser();
+}
+  
   toggleTheme() {
     this.themeService.toggleTheme();
   }
@@ -121,6 +125,7 @@ export class ProfileComponent implements AfterViewInit {
     });
   }
   getFriends() {
+    console.log(this.user);
     this.friendService.getFriends(this.user.username).subscribe(
       (friends: any[]) => {
         // Iterar sobre la lista de amigos
