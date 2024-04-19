@@ -33,7 +33,6 @@ loadRecommendations(){
       response.forEach((recommendation: any) => {
           this.recommendations.push(recommendation);
       });
-      this.recommendations = this.recommendations.slice(0, 10);
     },
     (error) => {
       console.error('Error al obtener las recomendaciones', error);

@@ -1,12 +1,10 @@
 <div class="row">
-    <h3>Similars Animes</h3>
-  </div>
-  <div class="mt-4 d-flex flex-wrap">
-    <div *ngFor="let item of anime" class="p-2" >
-       
-      <a routerLink="/pages/detalle/{{item.anime.mal_id}}"> 
-        <img width="60px"
-          src="{{item.anime.images.jpg.image_url}}" alt="Character Image"></a>
-  
+      <h3>Similars Animes</h3>
     </div>
-
+    <div class="mt-4 d-flex flex-nowrap overflow-auto">
+      <div *ngFor="let item of anime.slice(0, 20)" class="p-2">
+        <a routerLink="/pages/detalle/{{item.anime.mal_id}}">
+          <img width="60px" src="{{item.anime.images.jpg.image_url}}" alt="Character Image">
+        </a>
+      </div>
+    </div>

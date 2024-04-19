@@ -1,0 +1,10 @@
+.overflow-auto::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra */
+    height: 8px; /* Altura de la barra (en el caso de desplazamiento vertical) */
+  }
+  
+  .overflow-auto::-webkit-scrollbar-thumb {
+    background-color: #e4e4e4; /* Color del pulgar */
+    border-radius: 5px; /* Radio de borde del pulgar */
+  }
+  

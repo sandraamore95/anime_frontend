@@ -1,9 +1,10 @@
 <div class="row">
   <h3>Reccomendations</h3>
 </div>
-<div class="mt-4 d-flex flex-wrap">
-  <div *ngFor="let recommendation of recommendations" class="p-2" >
-    <a routerLink="/pages/detalle/{{ recommendation.entry.mal_id }}"> <img width="60px"
-        src="{{recommendation.entry.images.webp.image_url}}" alt="Character Image"></a>
-
+<div class="mt-4 d-flex flex-nowrap overflow-auto">
+  <div *ngFor="let recommendation of recommendations.slice(0,20)" class="p-2">
+    <a routerLink="/pages/detalle/{{recommendation.entry.mal_id}}">
+      <img width="60px" src="{{recommendation.entry.images.webp.image_url}}" alt="Character Image">
+    </a>
   </div>
+</div>
