@@ -1,0 +1,7 @@
+.container {
+    min-height: 100vh; /* altura mínima del contenedor */
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+   
+}
