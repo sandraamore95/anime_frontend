@@ -43,8 +43,8 @@
                             <span class="value">{{anime.status}}</span>
                           </div>
                           <div class="information-item">
-                            <span class="label">Aired: </span>
-                            <span class="value">{{anime.aired}}</span>
+                            <span class="label">Fecha de Emisión: </span>
+                            <span class="value">{{anime.aired.prop.from.year}} | {{anime.aired.prop.to.year}} </span>
                           </div>
                           <div class="information-item">
                             <span class="label">Duration: </span>
@@ -66,9 +66,9 @@
                         <h3>{{anime.background}}</h3>
                         <p>{{anime.source}}</p>
                         <p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                class="fa fa-star"></i> | <span>Puntuacion media : {{anime.score}} | 24 reseñas</span>
-                        </p>
-
+                          class="fa fa-star"></i> | <span>Puntuacion media : {{anime.score}} | {{anime.episodes}} episodios</span>
+                      </p>
+                      
                         <p>{{anime.synopsis}}</p>
                         <div class="d-flex">
                             <a *ngFor="let genre of anime.genres" class="btn btn-secondary">{{genre.name}}</a>
