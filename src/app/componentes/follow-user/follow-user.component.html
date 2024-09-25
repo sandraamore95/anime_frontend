@@ -1,0 +1,6 @@
+<div *ngIf="!isFollowing">
+    <button (click)="followUser(user.id)">Seguir</button>
+</div>
+<div *ngIf="isFollowing">
+    <button (click)="unfollowUser(user.id)">Dejar de seguir</button>
+</div>

@@ -1,0 +1,26 @@
+<div class="container" *ngIf="user?.username && userPrincipal.username !== user.username">
+    <h3>Solicitudes de Seguimiento</h3>
+
+    <div *ngIf="isFriend">
+        <!-- Si son amigos -->
+      
+    </div>
+    
+    <div *ngIf="isPending">
+        <!-- Si hay una solicitud pendiente -->
+        <div *ngIf="isSender">
+            <!-- Si el usuario principal es el remitente de la solicitud -->
+            <a class="btn btn-danger" (click)="cancelFriendRequest(user.id)">Cancelar solicitud</a>
+        </div>
+        <div *ngIf="isReceiver">
+            <!-- Si el usuario principal es el receptor de la solicitud -->
+            <a class="btn btn-success" (click)="acceptFriendRequest(user.id)">Aceptar</a>
+            <a class="btn btn-warning" (click)="rejectFriendRequest(user.id)">Rechazar</a>
+        </div>
+    </div>
+    
+    <!-- Muestra el botón de enviar solicitud si no son amigos y no hay una solicitud pendiente -->
+    <div *ngIf="!isFriend">
+        <button class="btn btn-primary" (click)="sendFriendRequest(user.id)">Seguir</button>
+    </div>
+</div>

@@ -27,29 +27,32 @@
     <div class="text-center mt-4">
       <img height="140px" width="140" class="rounded-circle" [src]="profile?.avatar" alt="">
       <h2>{{user?.username}}</h2>
-    
-         <div *ngIf="!userlogged.roles.includes('ROLE_ADMIN')">
-        <app-request-friend [user]="user"></app-request-friend>
-      </div> 
-     
- 
-      
+
+      <div *ngIf="!userlogged.roles.includes('ROLE_ADMIN') && userlogged.username !== user.username">
+        <app-follow-user [user]="user"> </app-follow-user>
+      </div>
+
+
+
 
 
       <h2>{{profile.fullName}}</h2>
       <div class="mt-2">
-        <a *ngIf="profile.facebookInProfile" href="{{profile.FacebookInProfile}}" class="text-white text-decoration-none text-muted fs-4 me-4">
+        <a *ngIf="profile.facebookInProfile" href="{{profile.FacebookInProfile}}"
+          class="text-white text-decoration-none text-muted fs-4 me-4">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a *ngIf="profile.twitterProfile" href="{{profile.TwitterProfile}}" class="text-white text-decoration-none text-muted fs-4 me-4">
+        <a *ngIf="profile.twitterProfile" href="{{profile.TwitterProfile}}"
+          class="text-white text-decoration-none text-muted fs-4 me-4">
           <i class="fab fa-twitter"></i>
         </a>
-        <a *ngIf="profile.instragramProfile" href="{{profile.InstragramProfile}}" class="text-white text-decoration-none text-muted fs-4 me-4">
+        <a *ngIf="profile.instragramProfile" href="{{profile.InstragramProfile}}"
+          class="text-white text-decoration-none text-muted fs-4 me-4">
           <i class="fab fa-instagram"></i>
         </a>
 
       </div>
-      
+
       <div *ngIf="userlogged.username == user?.username" class="mt-2">
         <a *ngFor="let friend of friends" routerLink="/pages/profile/{{friend.username}}" class="friend-link">
           <img width="60px" height="50px" class="rounded-circle" [src]="friend.avatar" alt="Profile Image" />
@@ -62,12 +65,12 @@
 
       <h3>{{profile.about}}</h3>
     </div>
-    
-      
-      <app-post-profile  [user_profile]="user"></app-post-profile>
-   
-    
 
-    
+
+    <app-post-profile [user_profile]="user"></app-post-profile>
+
+
+
+
   </div>
 </div>

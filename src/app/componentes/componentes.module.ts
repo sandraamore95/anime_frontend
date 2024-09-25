@@ -21,6 +21,9 @@ import { FilterUserPipe } from '../pipes/filter-user.pipe';
 import { CarrouselComponent } from './carrousel/carrousel.component';
 import { SimilarsComponent } from './anime/similars/similars.component';
 import { VoiceCharacterComponent } from './anime/voice-character/voice-character.component';
+import { FriendRequestComponent } from './friends-list/friends-list.component';
+import { FollowUserComponent } from './follow-user/follow-user.component';
+
 
 
 
@@ -33,7 +36,7 @@ import { VoiceCharacterComponent } from './anime/voice-character/voice-character
      AnimeComponent, SearchComponent, SearchResultsComponent ,FilterNamePipe, MessagesComponent, 
      ChangeEmailComponent, ChangePasswordComponent, MenuComponent, PostComponent,
       CommentComponent, RequestFriendComponent, PersonalDataComponent, CharacterComponent,
-       RecommendationComponent,FilterUserPipe, CarrouselComponent, SimilarsComponent, VoiceCharacterComponent// Make sure the pipe is declared here
+       RecommendationComponent,FilterUserPipe, CarrouselComponent, SimilarsComponent, VoiceCharacterComponent, FriendRequestComponent, FollowUserComponent// Make sure the pipe is declared here
   
   ],
   //cosas que ncesitamos en este modilo
@@ -44,7 +47,7 @@ import { VoiceCharacterComponent } from './anime/voice-character/voice-character
   exports: [
     AnimeComponent,SearchComponent,SearchResultsComponent ,
     MenuComponent,PostComponent,CommentComponent,RequestFriendComponent,CharacterComponent,
-    RecommendationComponent,FilterUserPipe,CarrouselComponent,SimilarsComponent,VoiceCharacterComponent
+    RecommendationComponent,FilterUserPipe,CarrouselComponent,SimilarsComponent,VoiceCharacterComponent,FriendRequestComponent,FollowUserComponent
   ]
 })
 export class ComponentesModule { }
