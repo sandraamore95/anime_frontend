@@ -14,6 +14,7 @@ import { AvatarService } from 'src/app/services/avatar-service.service';
 import { FavoritePostsService } from 'src/app/services/favorite-posts.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { FriendService } from 'src/app/services/friend.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-post',
@@ -37,7 +38,7 @@ export class PostComponent {
     private postService: PostService,
     private storageService: StorageService,
     private router: Router,private formBuilder: FormBuilder,private avatarService :AvatarService,
-    private favoritePostService:FavoritePostsService ,public themeService: ThemeService , private friendService:FriendService
+    private favoritePostService:FavoritePostsService ,public themeService: ThemeService , private friendService:FriendService,private http: HttpClient
   ) { }
   
   ngOnInit(): void {
@@ -109,10 +110,21 @@ export class PostComponent {
   eliminarPost(post:any){
     this.deletePost(post);
   };
-  downloadImage(){
-    alert("decargar imagen en local!");
+  
+  downloadImage() {
+    this.http.get(this.imageUrl, { responseType: 'blob' }).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'image.jpg'; // Nombre del archivo de la imagen que se descargará
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error al descargar la imagen', error);
+    });
   }
-
  
 
   onSubmit() {
