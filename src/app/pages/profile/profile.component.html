@@ -28,7 +28,7 @@
       <img height="140px" width="140" class="rounded-circle" [src]="profile?.avatar" alt="">
       <h2>{{user?.username}}</h2>
 
-      <div *ngIf="!userlogged.roles.includes('ROLE_ADMIN') && userlogged.username !== user.username">
+      <div *ngIf="!userlogged.roles.includes('ROLE_ADMIN')">
         <app-follow-user [user]="user"> </app-follow-user>
       </div>
 

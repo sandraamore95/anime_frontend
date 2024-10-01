@@ -18,7 +18,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./profile.component.css'],
   providers: [FilterUserPipe]
 })
-export class ProfileComponent implements AfterViewInit ,OnInit{
+export class ProfileComponent implements AfterViewInit, OnInit {
   searchHolder: string = 'search User...'
   search: string = '';
   user: any;
@@ -29,22 +29,21 @@ export class ProfileComponent implements AfterViewInit ,OnInit{
   showAllUsers: boolean = true;
 
 
-  
-  constructor(
+
+  constructor (
     private userService: UserService,
     private route: ActivatedRoute,
     private storageService: StorageService,
     private friendService: FriendService, private avatarService: AvatarService,
-    private profileService: ProfileService, 
-    private filteredUserPipe: FilterUserPipe, 
-    private cd: ChangeDetectorRef,public themeService: ThemeService
-  ) {
+    private profileService: ProfileService,
+    private filteredUserPipe: FilterUserPipe,
+    private cd: ChangeDetectorRef, public themeService: ThemeService
+  ) {}
 
+  ngOnInit(): void {
+    this.user = this.storageService.getUser();
   }
-ngOnInit(): void {
-  this.user=this.storageService.getUser();
-}
-  
+
   toggleTheme() {
     this.themeService.toggleTheme();
   }
@@ -66,14 +65,15 @@ ngOnInit(): void {
     this.userlogged = this.storageService.getUser();
     this.loadUsers();
     this.loadUserData();
-    this.getFriends();
+    //this.getFriends();
   }
 
 
   loadUsers() {
     this.userService.getAllUsers().pipe(
       switchMap((users: any[]) => {
-        const paginatedUsers = users.filter((user: any) => user.username !== this.userlogged.username && !user.roles.some((role: any) => role.name === 'ROLE_ADMIN'))
+        const paginatedUsers = users.filter(
+          (user: any) => user.username !== this.userlogged.username && !user.roles.some((role: any) => role.name === 'ROLE_ADMIN'))
         const userObservables: Observable<any>[] = paginatedUsers.map((user: any) => {
           return this.avatarService.getAvatarUrl(user.username).pipe(
             map((avatarURL: string) => ({
@@ -107,7 +107,7 @@ ngOnInit(): void {
           //cargamos el perfil 
           this.profileService.getUserProfile(username_param).subscribe(
             (data) => {
-              this.profile = data; console.log(this.profile); 
+              this.profile = data; console.log(this.profile);
               this.avatarService.getAvatarUrl(this.profile.user.username).subscribe((avatarURL: string) => {
                 // Asigna la URL del avatar a la propiedad 'avatar' en el objeto 'profile'
                 this.profile.avatar = avatarURL;
@@ -142,5 +142,5 @@ ngOnInit(): void {
     );
   }
 
- 
+
 }

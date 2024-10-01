@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor{
     let authReq = req;
    
     const token = this.storageservice.getToken();
-    console.log(token);
+    //console.log(token);
     //si el usuario esta logeado y la url pertenece a 8080
     if(token != null && (!req.url.includes('jikan'))){
      

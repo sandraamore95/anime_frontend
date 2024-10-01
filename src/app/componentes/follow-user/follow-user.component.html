@@ -1,6 +1,22 @@
-<div *ngIf="!isFollowing">
-    <button (click)="followUser(user.id)">Seguir</button>
-</div>
-<div *ngIf="isFollowing">
-    <button (click)="unfollowUser(user.id)">Dejar de seguir</button>
+<div class="container mt-4 text-center">
+  <div *ngIf="user.username !== loggedUser.username" class="mb-4">
+    <div *ngIf="!isFollowing">
+      <button class="btn btn-secondary" (click)="followUser(user.id)">Seguir</button>
+    </div>
+    <div *ngIf="isFollowing">
+      <button class="btn btn-secondary" (click)="unfollowUser(user.id)">Dejar de seguir</button>
+    </div>
+    
+    <!-- Seguidores y Seguidos centrados y debajo del botón -->
+    <div class="d-flex justify-content-center mt-3">
+      <div class="me-4">
+        <h5>Seguidores</h5>
+        <p class="badge bg-info">{{ followers.length }}</p>
+      </div>
+      <div>
+        <h5>Seguidos</h5>
+        <p class="badge bg-info">{{ following.length }}</p>
+      </div>
+    </div>
+  </div>
 </div>

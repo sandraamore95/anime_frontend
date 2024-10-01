@@ -53,7 +53,7 @@ export class PostComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if ('user_profile' in changes && this.user_profile) {
       this.loadPostsAndImages(this.currentPage, this.pageSize);
-      this.areFriends(this.user_profile);
+      //this.areFriends(this.user_profile);
     }
   }
 
