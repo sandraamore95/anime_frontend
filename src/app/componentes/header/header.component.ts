@@ -16,15 +16,15 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  
+
   isLoggedIn = false;
- 
+
   user: any;
   user_profile: any;
 
   isAdmin: boolean = false;
   isUser: boolean = false;
-
+  image: string | null = null; // Define la propiedad
   notifications: any[] = [];
   navLinksHidden: boolean = true;
   private notificationSubscription: Subscription = new Subscription;
@@ -39,43 +39,46 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     console.log("Inicializando HeaderComponent...");
     this.storageService.userLogged$.subscribe(user => {
-      this.isLoggedIn = user;
+      this.isLoggedIn = !!user; // Verificar si hay usuario
       this.user = this.storageService.getUser();
-  
       console.log(this.user);
+
       if (this.isLoggedIn) {
+        this.isUser = this.user.roles.includes('ROLE_USER');
+        this.isAdmin = this.user.roles.includes('ROLE_ADMIN');
 
-        if (this.user.roles.includes('ROLE_USER')) {
-          console.log("SOMOS USER");
-          this.isUser = true;
+        if (this.isUser) {
+          console.log("estamos aqui");
+          console.log(this.user);
           this.stateService.userProfile$.subscribe(profile => {
-            this.user_profile = profile || this.storageService.getProfile();
-          });
+            console.log('Perfil desde StateService:', profile);
+            console.log('Perfil desde localStorage:', this.storageService.getProfile().avatar); this.image = this.storageService.getProfile().avatar;
+            this.user_profile = profile || this.storageService.getProfile(); // Actualiza el perfil
+          
 
-          this.notificationSubscription = this.notificationService.notificationDeleted$.subscribe(deletedNotificationId => {
-            // Actualizar la lista de notificaciones eliminando la notificación correspondiente
-            this.notifications = this.notifications.filter(notification => notification.id !== deletedNotificationId);
-          });
+        });
           this.getNotifications();
-        }else {
-          console.log("SOMOS ADMIN");
-          this.isAdmin = true;
         }
-      } 
+      } else {
+        // Si no está logueado, limpia el usuario y los estados
+        this.isUser = false;
+        this.isAdmin = false;
+      }
     });
   }
 
-
-  
-
   logout(): void {
     console.log("Vamos a cerrar sesión");
-    this.storageService.logout();   
+    this.storageService.logout();
+    this.isLoggedIn = false; // Actualiza el estado
+    this.isUser = false; // Actualiza el estado
+    this.isAdmin = false; // Actualiza el estado
     this.router.navigate(['/auth/login']);
   }
+
+
 
 
   getNotifications(): void {
