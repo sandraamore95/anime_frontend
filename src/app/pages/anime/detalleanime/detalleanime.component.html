@@ -12,9 +12,10 @@
                     </div>
                     <div class="text-center m-4">
 
-                        <a class="btn btn-primary mt-4" (click)="toggleFavorites()">
-                            {{ (existFav$ | async) ? 'Quitar de la lista' : 'Agregar a la lista' }}
-                          </a>
+                      <a *ngIf="userRole !== 'ROLE_ADMIN'" class="btn btn-primary mt-4" (click)="toggleFavorites()">
+                        {{ (existFav$ | async) ? 'Quitar de la lista' : 'Agregar a la lista' }}
+                      </a>
+                      
                           
                         <br>
                         <a *ngIf="videoUrl" class="" (click)="toggleVideo()" target="_blank" class="youtube-button">

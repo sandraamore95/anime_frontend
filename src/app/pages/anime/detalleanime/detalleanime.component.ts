@@ -30,6 +30,7 @@ export class DetalleanimeComponent {
   existFav = false;
   videoUrl: SafeResourceUrl | undefined;
   showVideo = false;
+  userRole:string='';
 
   toggleVideo(): void {
     this.showVideo = !this.showVideo;
@@ -37,6 +38,7 @@ export class DetalleanimeComponent {
 
   ngOnInit(): void {
     this.isLoggedIn = this.storageservice.isLoggedIn();
+    this.userRole=this.storageservice.getUserRole();
     // Inicializa el BehaviorSubject con el valor inicial de existFav
     this.existFavSubject = new BehaviorSubject<boolean>(this.existFav);
     // Convierte el BehaviorSubject en un observable
