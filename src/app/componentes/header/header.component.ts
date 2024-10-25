@@ -59,6 +59,11 @@ export class HeaderComponent implements OnInit {
           
 
         });
+        this.notificationSubscription = this.notificationService.notificationDeleted$.subscribe(deletedNotificationId => {
+          // Actualizar la lista de notificaciones eliminando la notificación correspondiente
+          this.notifications = this.notifications.filter(notification => notification.id !== deletedNotificationId);
+        });
+
           this.getNotifications();
         }
       } else {
