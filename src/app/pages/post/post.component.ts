@@ -15,6 +15,7 @@ import { FavoritePostsService } from 'src/app/services/favorite-posts.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { FriendService } from 'src/app/services/friend.service';
 import { HttpClient } from '@angular/common/http';
+import { FollowService } from 'src/app/services/follow.service';
 
 @Component({
   selector: 'app-post',
@@ -38,7 +39,7 @@ export class PostComponent {
     private postService: PostService,
     private storageService: StorageService,
     private router: Router,private formBuilder: FormBuilder,private avatarService :AvatarService,
-    private favoritePostService:FavoritePostsService ,public themeService: ThemeService , private friendService:FriendService,private http: HttpClient
+    private favoritePostService:FavoritePostsService ,public themeService: ThemeService , private followService:FollowService,private http: HttpClient
   ) { }
   
   ngOnInit(): void {
@@ -158,16 +159,24 @@ export class PostComponent {
     });
   }
 
-  getFollowers(){
-    //recogemos el user 
-    this.friendService.getFriends(this.post.author.username).subscribe(
-      (friends: any[]) => {
-        console.log(friends.length);
-      this.followers=friends.length;
-        
-      }
-    );
-
+  getFollowers() {
+    // Verifica que existe un usuario asociado al post
+    if (this.post && this.post.author && this.post.author.id) {
+      const userId = this.post.author.id;
+  
+      // Llama al servicio getFollowers con userId
+      this.followService.getFollowers(userId).subscribe(
+        (followers: any[]) => {
+          console.log(followers.length);
+          this.followers = followers.length; // Actualiza la cantidad de seguidores
+        },
+        error => {
+          console.error("Error al obtener seguidores:", error);
+        }
+      );
+    } else {
+      console.error("No se pudo obtener el ID del usuario del post");
+    }
   }
   
 
