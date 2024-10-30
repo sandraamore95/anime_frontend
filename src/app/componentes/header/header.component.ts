@@ -54,10 +54,14 @@ export class HeaderComponent implements OnInit {
           console.log(this.user);
           this.stateService.userProfile$.subscribe(profile => {
             console.log('Perfil desde StateService:', profile);
-            console.log('Perfil desde localStorage:', this.storageService.getProfile().avatar); this.image = this.storageService.getProfile().avatar;
-            this.user_profile = profile || this.storageService.getProfile(); // Actualiza el perfil
-
-
+            
+            if (profile) {
+              this.user_profile = profile;
+              this.image = profile.avatar;  // Usa directamente el avatar desde el perfil actualizado
+            } else {
+              this.user_profile = this.storageService.getProfile(); // Si no hay perfil actualizado, usa el guardado en local
+              this.image = this.user_profile?.avatar;
+            }
           });
           this.notificationSubscription = this.notificationService.notificationDeleted$.subscribe(deletedNotificationId => {
             // Actualizar la lista de notificaciones eliminando la notificación correspondiente
