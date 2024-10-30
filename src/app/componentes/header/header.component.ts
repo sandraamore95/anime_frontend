@@ -56,13 +56,13 @@ export class HeaderComponent implements OnInit {
             console.log('Perfil desde StateService:', profile);
             console.log('Perfil desde localStorage:', this.storageService.getProfile().avatar); this.image = this.storageService.getProfile().avatar;
             this.user_profile = profile || this.storageService.getProfile(); // Actualiza el perfil
-          
 
-        });
-        this.notificationSubscription = this.notificationService.notificationDeleted$.subscribe(deletedNotificationId => {
-          // Actualizar la lista de notificaciones eliminando la notificación correspondiente
-          this.notifications = this.notifications.filter(notification => notification.id !== deletedNotificationId);
-        });
+
+          });
+          this.notificationSubscription = this.notificationService.notificationDeleted$.subscribe(deletedNotificationId => {
+            // Actualizar la lista de notificaciones eliminando la notificación correspondiente
+            this.notifications = this.notifications.filter(notification => notification.id !== deletedNotificationId);
+          });
 
           this.getNotifications();
         }
@@ -98,27 +98,31 @@ export class HeaderComponent implements OnInit {
 
 
   redirectTo(notification: any) {
+    console.log(notification);
     this.notificationService.setSelectedNotification(notification);
     if (notification.dtype === "Notification") {
-      const username = notification.sender.username;
+      const username = notification.follower.username;
       this.router.navigate(['/pages/profile/', username]);
     } else {
-      // Redirigir a la página del post y eliminar la notificación
-      console.log(notification);
-      const username = notification.comment.post.author.username;
-
-      // Eliminar la notificación antes de redirigir
-      this.notificationService.deleteNotification(notification.id).subscribe(
-        (deletedNotification: any) => {
-          console.log("Notificación eliminada:", deletedNotification);
-          // Redirigir a la página del post
-          this.router.navigate(['/pages/post/', notification.comment.post.id]);
-        },
-        (error) => {
-          console.error("Error al eliminar la notificación:", error);
-        }
-      );
+      // Redirigir a la página del post
+      this.router.navigate(['/pages/post/', notification.comment.post.id]);
     }
+  }
+
+  deleteNotification(notification: any) {
+    console.log(notification);
+       // Eliminar la notificación antes de redirigir
+          this.notificationService.deleteNotification(notification.id).subscribe(
+            (deletedNotification: any) => {
+              console.log("Notificación eliminada:", deletedNotification);
+            },
+            (error) => {
+              console.error("Error al eliminar la notificación:", error);
+            }
+          );
+    
+    
+    
   }
 
 
