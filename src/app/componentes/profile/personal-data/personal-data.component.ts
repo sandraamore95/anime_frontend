@@ -81,7 +81,7 @@ export class PersonalDataComponent implements OnInit {
              () => {
                alert('Se ha enviado un correo electrónico de confirmación. Por favor, revisa tu bandeja de entrada.');
                //ahora se tiene que cerrar la sesion 
-               window.sessionStorage.removeItem("auth-user");
+               this.storageService.logout();
              },
              error => {
                console.error('Error al enviar la solicitud de eliminación de cuenta:', error);
