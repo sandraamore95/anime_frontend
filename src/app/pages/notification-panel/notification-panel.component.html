@@ -1,40 +1,42 @@
-<!-- notification-panel.component.html -->
-<div *ngIf="paginatedNotifications.length; else noNotifications">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Notificación</th>
-          <!-- Añade más columnas según tu objeto de notificación -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let notification of paginatedNotifications; let i = index">
-         
-          <a (click)="redirectTo(notification)">
+<div *ngIf="paginatedNotifications.length; else noNotifications" class="notification-panel-container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+       
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let notification of paginatedNotifications; let i = index">
+      
+        <td>
+          <a (click)="redirectTo(notification)" class="notification-link">
             {{ notification.message }}
-            <i *ngIf="notification.dtype === 'Notification'; else postIcon" class="fa fa-user text-dark"
-              aria-hidden="true"></i>
+            <i *ngIf="notification.dtype === 'Notification'; else postIcon" class="fa fa-user text-dark" aria-hidden="true"></i>
             <ng-template #postIcon>
               <i class="fa fa-bullhorn text-primary" aria-hidden="true"></i>
             </ng-template>
           </a>
-          <!-- Muestra más datos de cada notificación según necesites -->
-        </tr>
-      </tbody>
-    </table>
-  
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li class="page-item" *ngFor="let page of pages">
-            <button class="page-link" (click)="goToPage(page)">{{ page }}</button>
-          </li>
-        </ul>
-      </nav>
-      
-  </div>
-  
-  <ng-template #noNotifications>
-    <p>No hay notificaciones para mostrar.</p>
-  </ng-template>
-  
+        </td>
+        <td>
+          <button (click)="deleteNotification(notification)" class="btn btn-danger btn-sm">
+            <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation" class="pagination-container">
+      <ul class="pagination">
+        <li class="page-item" *ngFor="let page of pages">
+          <button class="page-link" (click)="goToPage(page)">{{ page }}</button>
+        </li>
+      </ul>
+    </nav>
+</div>
+
+<ng-template #noNotifications>
+  <p class="no-notifications-message">No hay notificaciones para mostrar.</p>
+</ng-template>

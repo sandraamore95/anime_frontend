@@ -46,28 +46,36 @@ export class NotificationPanelComponent implements OnInit {
   setupPagination(): void {
     this.pages = Array.from({ length: Math.ceil(this.totalNotifications / this.notificationsPerPage) }, (_, i) => i + 1);
   }
-
   
+  deleteNotification(notification: any): void {
+    this.notificationService.deleteNotification(notification.id).subscribe(
+      () => {
+        // Filtrar la notificación eliminada de la lista de notificaciones
+        this.notifications = this.notifications.filter(n => n.id !== notification.id);
+        this.totalNotifications = this.notifications.length;
+        
+        // Actualizar paginación y lista paginada de notificaciones
+        this.setupPagination();
+        this.paginateNotifications();
+  
+        console.log("Notificación eliminada:", notification);
+      },
+      error => {
+        console.error("Error al eliminar la notificación:", error);
+      }
+    );
+  }
+
+
   redirectTo(notification: any) {
+    console.log(notification);
     this.notificationService.setSelectedNotification(notification);
     if (notification.dtype === "Notification") {
-      const username = notification.sender.username;
+      const username = notification.follower.username;
       this.router.navigate(['/pages/profile/', username]);
     } else {
-      // Redirigir a la página del post y eliminar la notificación
-      const username = notification.comment.post.author.username;
-
-      // Eliminar la notificación antes de redirigir
-      this.notificationService.deleteNotification(notification.id).subscribe(
-        (deletedNotification: any) => {
-          console.log("Notificación eliminada:", deletedNotification);
-          // Redirigir a la página del post
-          this.router.navigate(['/pages/post/', notification.comment.post.id]);
-        },
-        (error) => {
-          console.error("Error al eliminar la notificación:", error);
-        }
-      );
+      // Redirigir a la página del post
+      this.router.navigate(['/pages/post/', notification.comment.post.id]);
     }
   }
 
