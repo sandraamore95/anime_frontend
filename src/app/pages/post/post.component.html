@@ -44,17 +44,17 @@
             <!-- Opción de eliminar con icono de basura -->
             <li *ngIf="isuserPrincipal || userLogged.roles.includes('ROLE_ADMIN')">
               <button class="dropdown-item" (click)="eliminarPost(post)">
-                <i class="far fa-trash"></i> Eliminar
+                <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
               </button>
             </li>
           </ul>
         </div>
         <!-- Botón de guardar -->
-        <button *ngIf="!isuserPrincipal"  (click)="downloadImage()" class="btn btn-options text-light">
+        <button *ngIf="!isuserPrincipal && userRole == 'ROLE_USER'"  (click)="downloadImage()" class="btn btn-options text-light">
           <i  class="fas fa-download"></i> Descargar
         </button>
         
-        <button *ngIf="!isuserPrincipal" class="btn btn-options text-light" (click)="toggleFavorites()">
+        <button *ngIf="!isuserPrincipal && userRole == 'ROLE_USER'" class="btn btn-options text-light" (click)="toggleFavorites()">
           {{ (existFav$ | async) ? 'Quitar de Guardados' : 'Guardar' }} 
         </button>
       </div>

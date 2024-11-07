@@ -34,18 +34,20 @@ export class PostComponent {
   isFormSubmitted: boolean = false;
   followers:number=0;
   existFav$ = new BehaviorSubject<boolean>(false);
+  userRole:string='';
   
   constructor(private route: ActivatedRoute,
     private postService: PostService,
     private storageService: StorageService,
     private router: Router,private formBuilder: FormBuilder,private avatarService :AvatarService,
-    private favoritePostService:FavoritePostsService ,public themeService: ThemeService , private followService:FollowService,private http: HttpClient
+    private favoritePostService:FavoritePostsService ,private storageservice:StorageService,public themeService: ThemeService , private followService:FollowService,private http: HttpClient
   ) { }
   
   ngOnInit(): void {
     this.userLogged=this.storageService.getUser();
     this.loadPostData();
-    
+    this.userRole=this.storageservice.getUserRole();
+    console.log(this.userRole);
   }
 
   mostrarAgregarFormulario() {
