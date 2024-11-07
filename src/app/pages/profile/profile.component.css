@@ -6,56 +6,134 @@
 .hide-link {
   display: none;
 }
-.padding {
-  padding: 3rem !important
+/* Tema oscuro */
+.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
 }
 
-.user-card-full {
-  overflow: hidden;
+.dark-theme a,
+.dark-theme h2,
+.dark-theme p,
+.dark-theme .text-muted {
+  color: #e0e0e0 !important;
 }
 
-.card {
-  border-radius: 5px;
-  -webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
-  box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
-  border: none;
-  margin-bottom: 30px;
+/* Botón de cambiar tema */
+button.btn {
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.m-r-0 {
-  margin-right: 0px;
+button.btn.active {
+  background-color: #444;
+  color: #fff;
 }
 
-.m-l-0 {
-  margin-left: 0px;
+/* Resultados de búsqueda de usuarios */
+.search-results .list-group-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
 }
 
-.user-card-full .user-profile {
-  border-radius: 5px 0 0 5px;
+.search-results .list-group-item:hover {
+  background-color: #f1f1f1;
 }
 
-.bg-c-lite-green {
-      background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
-  background: linear-gradient(to right, #ee5a6f, #f29263);
+.dark-theme .search-results .list-group-item {
+  background-color: #222;
+  border-color: #333;
 }
 
-.user-profile {
-  padding: 20px 0;
+.dark-theme .search-results .list-group-item:hover {
+  background-color: #333;
 }
 
-.card-block {
-  padding: 1.25rem;
+/* Información de perfil */
+.profile-info {
+  text-align: center;
 }
 
-.m-b-25 {
-  margin-bottom: 25px;
+.profile-info h2 {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
-.img-radius {
-  border-radius: 5px;
+.profile-info p.text-muted {
+  font-size: 1em;
+  color: #6c757d;
 }
 
+.profile-info .rounded-circle {
+  border: 3px solid #ccc;
+}
 
+.dark-theme .profile-info .rounded-circle {
+  border-color: #444;
+}
+
+/* Enlaces a redes sociales */
+.social-links a {
+  color: #6c757d;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #007bff;
+}
+
+/* Botón de Ver más/Ver menos */
+button.btn-link {
+  color: #007bff;
+  font-size: 0.9em;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+button.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* Sección Sobre mí */
+.about-section h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.about-section p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #555;
+}
+
+.dark-theme .about-section p {
+  color: #aaa;
+}
+
+/* Estilos de publicaciones (app-post-profile) */
+app-post-profile {
+  margin-top: 20px;
+}
+
+app-post-profile .post {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.dark-theme app-post-profile .post {
+  background-color: #222;
+  border-color: #444;
+}
 
 h6 {
   font-size: 14px;
