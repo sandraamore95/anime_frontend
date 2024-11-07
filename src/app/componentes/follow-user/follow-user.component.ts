@@ -93,4 +93,7 @@ export class FollowUserComponent implements OnInit, OnChanges {
       }
     );
   }
+  showPanel(){
+    alert("panel de seguidores y seguidos");
+  }
 }

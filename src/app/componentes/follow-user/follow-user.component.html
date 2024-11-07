@@ -11,11 +11,12 @@
     <div class="d-flex justify-content-center mt-3">
       <div class="me-4">
         <h5>Seguidores</h5>
-        <p class="badge bg-info">{{ followers.length }}</p>
+        <a class="badge bg-info" (click)="showPanel()">{{ followers.length }}</a>
       </div>
+      
       <div>
         <h5>Seguidos</h5>
-        <p class="badge bg-info">{{ following.length }}</p>
+        <a class="badge bg-info" (click)="showPanel()">{{ following.length }}</a>
       </div>
     </div>
   </div>
