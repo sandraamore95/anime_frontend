@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import {FormBuilder, FormGroup} from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Profile } from 'src/app/models/Profile';
 import { AccountService } from 'src/app/services/account.service';
 import { ProfileService } from 'src/app/services/profile.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 import { StorageService } from 'src/app/services/storage.service';
 @Component({
   selector: 'app-personal-data',
@@ -19,7 +19,7 @@ export class PersonalDataComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,private profileService:ProfileService,
      private storageService:StorageService, private accountService:AccountService,
-     private snackBar : MatSnackBar) {
+     private snackbarService: SnackbarService) {
     this.profile=this.storageService.getProfile();
     this.personalDataForm = this.formBuilder.group({
       fullName: [this.profile.fullName],
@@ -63,13 +63,13 @@ export class PersonalDataComponent implements OnInit {
             // Actualiza la sesión en el servicio que almacena el perfil
             this.profile = updatedProfile; 
             const message = 'Perfil actualizado exitosamente';
-            this.openSnackBar(message, 'Cerrar');
+            this.snackbarService.openSnackBar(message, 'Cerrar');
             
           },
           (error) => {
             console.log(error);
             const message = 'Error al actualizar Perfil';
-            this.openSnackBar(message, 'Cerrar');
+            this.snackbarService.openSnackBar(message, 'Cerrar');
          
           }
         );
@@ -92,12 +92,6 @@ export class PersonalDataComponent implements OnInit {
              }
            );
        }
-       
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 3000, // Duración en milisegundos
-    });
-  }
     }
 
 

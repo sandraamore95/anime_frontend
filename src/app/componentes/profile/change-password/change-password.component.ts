@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UserService } from 'src/app/services/user.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -15,7 +15,7 @@ export class ChangePasswordComponent {
   constructor(private formBuilder: FormBuilder, 
     private userService: UserService,
     private utilService: UtilsService,
-    private snackBar : MatSnackBar
+    private snackbarService: SnackbarService
   ) {
     this.changePasswordForm = this.formBuilder.group({
       newPassword: ['', [Validators.required, Validators.minLength(8)]],
@@ -31,18 +31,14 @@ export class ChangePasswordComponent {
       .subscribe(
         response => {
           const message = response || 'Contraseña cambiada con éxito';
-         this.openSnackBar(message, 'Cerrar');
+         this.snackbarService.openSnackBar(message, 'Cerrar');
         },
         error => {
           const errorMessage = error|| 'Error al cambiar la contraseña!';
-          this.openSnackBar(errorMessage, 'Cerrar');
+          this.snackbarService.openSnackBar(errorMessage, 'Cerrar');
         }
       );
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 3000, // Duración en milisegundos
-    });
-  }
+ 
 }
