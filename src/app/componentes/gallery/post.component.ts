@@ -169,7 +169,7 @@ export class PostComponent {
   }
 
   mostrarAgregarFormulario() {
-    this.mostrarFormulario = true;
+    this.mostrarFormulario = !this.mostrarFormulario; 
   }
 
   ocultarAgregarFormulario() {

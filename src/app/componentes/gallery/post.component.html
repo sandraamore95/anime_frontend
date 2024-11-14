@@ -5,8 +5,9 @@
   <div *ngIf="user_profile.username == userLogged" class="col-md-8">
     <div class="row mb-4 ">
       <div class="col-sm-12 col-md-8 col-lg-6">
-        <button  type="submit" class="btn btn-primary btn-block" (click)="mostrarAgregarFormulario();">AGREGAR
-          DIBUJO</button>
+        <button type="submit" class="btn btn-primary btn-block" (click)="mostrarAgregarFormulario()">
+          {{ mostrarFormulario ? 'CERRAR' : 'AGREGAR DIBUJO' }}
+        </button>
         <div *ngIf="mostrarFormulario" class="card mt-4">
           <div class="card-body">
             <h5 class="card-title">Subir Foto</h5>
