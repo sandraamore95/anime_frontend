@@ -28,7 +28,7 @@ export class ForgetPasswComponent {
       
         this.accountService.forgotPassword(email).subscribe(
           response => {
-            console.log('Se ha enviado el enlace de restablecimiento de contraseña:', response);
+            alert('Se ha enviado el enlace de restablecimiento de contraseña:'+ response);
             // Aquí puedes mostrar un mensaje de éxito al usuario
           },
           error => {
