@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -10,9 +11,12 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class ChangePasswordComponent {
   changePasswordForm: FormGroup;
-  isChangePassw = false;
   response = '';
-  constructor(private formBuilder: FormBuilder, private userService: UserService,private utilService: UtilsService) {
+  constructor(private formBuilder: FormBuilder, 
+    private userService: UserService,
+    private utilService: UtilsService,
+    private snackBar : MatSnackBar
+  ) {
     this.changePasswordForm = this.formBuilder.group({
       newPassword: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, this.utilService.matchPassword('newPassword')]],
@@ -26,14 +30,19 @@ export class ChangePasswordComponent {
     this.userService.changePassword(newPassword)
       .subscribe(
         response => {
-          this.isChangePassw= true;
-      this.response=response;
+          const message = response || 'Contraseña cambiada con éxito';
+         this.openSnackBar(message, 'Cerrar');
         },
         error => {
-          console.error( error); this.isChangePassw= true;
-          this.response =  'Error al cambiar la contraseña!';
-         
+          const errorMessage = error|| 'Error al cambiar la contraseña!';
+          this.openSnackBar(errorMessage, 'Cerrar');
         }
       );
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000, // Duración en milisegundos
+    });
   }
 }

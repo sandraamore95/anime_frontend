@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Profile } from 'src/app/models/Profile';
 import { AccountService } from 'src/app/services/account.service';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -14,11 +15,11 @@ export class PersonalDataComponent implements OnInit {
 
   personalDataForm: FormGroup;
   isFormSubmitted = false;
-  updateProfileResponse: string='';
-  updateProfileResponseClass: string = '';
   profile:any;
 
-  constructor(private formBuilder: FormBuilder,private profileService:ProfileService, private storageService:StorageService, private accountService:AccountService) {
+  constructor(private formBuilder: FormBuilder,private profileService:ProfileService,
+     private storageService:StorageService, private accountService:AccountService,
+     private snackBar : MatSnackBar) {
     this.profile=this.storageService.getProfile();
     this.personalDataForm = this.formBuilder.group({
       fullName: [this.profile.fullName],
@@ -61,13 +62,15 @@ export class PersonalDataComponent implements OnInit {
 
             // Actualiza la sesión en el servicio que almacena el perfil
             this.profile = updatedProfile; 
-            this.updateProfileResponse = 'Perfil actualizado exitosamente';
-            this.updateProfileResponseClass = 'profile-success';
+            const message = 'Perfil actualizado exitosamente';
+            this.openSnackBar(message, 'Cerrar');
+            
           },
           (error) => {
             console.log(error);
-            this.updateProfileResponse = 'Error al actualizar el perfil';
-            this.updateProfileResponseClass = 'profile-error';
+            const message = 'Error al actualizar Perfil';
+            this.openSnackBar(message, 'Cerrar');
+         
           }
         );
       }
@@ -89,6 +92,12 @@ export class PersonalDataComponent implements OnInit {
              }
            );
        }
+       
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000, // Duración en milisegundos
+    });
+  }
     }
 
 

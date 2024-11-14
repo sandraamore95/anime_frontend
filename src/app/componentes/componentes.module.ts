@@ -28,6 +28,7 @@ import { FollowUserComponent } from './follow-user/follow-user.component';
 
 
 
+
 @NgModule({
   //componentes que pertenecen al modulo
   declarations: [
